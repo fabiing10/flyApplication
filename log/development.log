@@ -1,0 +1,287 @@
+  [1m[35m (78.5ms)[0m  [1m[35mCREATE TABLE `airlines` (`id` int AUTO_INCREMENT PRIMARY KEY, `name` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [1m[35m (229.7ms)[0m  [1m[35mCREATE TABLE `airports` (`id` int AUTO_INCREMENT PRIMARY KEY, `name` varchar(255), `city_id` int, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [1m[35m (122.0ms)[0m  [1m[35mCREATE TABLE `buyers` (`id` int AUTO_INCREMENT PRIMARY KEY, `full_name` varchar(255), `gov_id` varchar(255), `company` varchar(255), `address` varchar(255), `country` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [1m[35m (131.0ms)[0m  [1m[35mCREATE TABLE `cities` (`id` int AUTO_INCREMENT PRIMARY KEY, `name` varchar(255), `country_name` varchar(255), `time_zone` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [1m[35m (110.3ms)[0m  [1m[35mCREATE TABLE `flight_itineraries` (`id` int AUTO_INCREMENT PRIMARY KEY, `plane_id` int, `flight_id` int, `departure_time` datetime, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [1m[35m (133.5ms)[0m  [1m[35mCREATE TABLE `flights` (`id` int AUTO_INCREMENT PRIMARY KEY, `origin_airport_id` int, `destination_airport_id` int, `periodicity` varchar(255), `periodicity_time` datetime, `avg_time` int, `airline_id` int, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [1m[35m (123.3ms)[0m  [1m[35mCREATE TABLE `passengers` (`id` int AUTO_INCREMENT PRIMARY KEY, `full_name` varchar(255), `gov_id` varchar(255), `country` varchar(255), `birthdate` date, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [1m[35m (144.5ms)[0m  [1m[35mCREATE TABLE `planes` (`id` int AUTO_INCREMENT PRIMARY KEY, `code` varchar(255), `seats_a` int, `seats_b` int, `airline_id` int, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [1m[35m (122.4ms)[0m  [1m[35mCREATE TABLE `sale_orders` (`id` int AUTO_INCREMENT PRIMARY KEY, `buyer_id` int, `buy_date` datetime, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [1m[35m (143.2ms)[0m  [1m[35mCREATE TABLE `tickets` (`id` int AUTO_INCREMENT PRIMARY KEY, `itinerary_id` int, `sale_order_id` int, `passenger_id` int, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [1m[35m (946.2ms)[0m  [1m[35mCREATE TABLE `users` (`id` int AUTO_INCREMENT PRIMARY KEY, `email` varchar(255), `password_digest` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL, `encrypted_password` varchar(255) DEFAULT '' NOT NULL, `reset_password_token` varchar(255), `reset_password_sent_at` datetime, `remember_created_at` datetime, `sign_in_count` int DEFAULT 0 NOT NULL, `current_sign_in_at` datetime, `last_sign_in_at` datetime, `current_sign_in_ip` varchar(255), `last_sign_in_ip` varchar(255), UNIQUE INDEX `index_users_on_email` USING btree (`email`), UNIQUE INDEX `index_users_on_reset_password_token` USING btree (`reset_password_token`)) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [1m[35m (263.9ms)[0m  [1m[35mCREATE TABLE `schema_migrations` (`version` varchar(255) PRIMARY KEY) ENGINE=InnoDB[0m
+  [1m[35m (4.5ms)[0m  [1m[34mSELECT version FROM `schema_migrations`[0m
+  [1m[35m (0.5ms)[0m  [1m[32mINSERT INTO `schema_migrations` (version) VALUES ('20161118003521')[0m
+  [1m[35m (0.5ms)[0m  [1m[32mINSERT INTO schema_migrations (version) VALUES ('20161116000841'), ('20161116000912'), ('20161116001021'), ('20161116002255'), ('20161116002436'), ('20161116002902'), ('20161116003002'), ('20161116003120'), ('20161116003242'), ('20161116003314'), ('20161116003415');
+
+[0m
+  [1m[35m (221.7ms)[0m  [1m[35mCREATE TABLE `ar_internal_metadata` (`key` varchar(255) PRIMARY KEY, `value` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT  `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO `ar_internal_metadata` (`key`, `value`, `created_at`, `updated_at`) VALUES ('environment', 'development', '2016-11-23 01:31:07', '2016-11-23 01:31:07')[0m
+  [1m[35m (16.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT  `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (103.5ms)[0m  [1m[35mCREATE TABLE `airlines` (`id` int AUTO_INCREMENT PRIMARY KEY, `name` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [1m[35m (121.3ms)[0m  [1m[35mCREATE TABLE `airports` (`id` int AUTO_INCREMENT PRIMARY KEY, `name` varchar(255), `city_id` int, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [1m[35m (111.6ms)[0m  [1m[35mCREATE TABLE `buyers` (`id` int AUTO_INCREMENT PRIMARY KEY, `full_name` varchar(255), `gov_id` varchar(255), `company` varchar(255), `address` varchar(255), `country` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [1m[35m (156.8ms)[0m  [1m[35mCREATE TABLE `cities` (`id` int AUTO_INCREMENT PRIMARY KEY, `name` varchar(255), `country_name` varchar(255), `time_zone` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [1m[35m (110.4ms)[0m  [1m[35mCREATE TABLE `flight_itineraries` (`id` int AUTO_INCREMENT PRIMARY KEY, `plane_id` int, `flight_id` int, `departure_time` datetime, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [1m[35m (124.6ms)[0m  [1m[35mCREATE TABLE `flights` (`id` int AUTO_INCREMENT PRIMARY KEY, `origin_airport_id` int, `destination_airport_id` int, `periodicity` varchar(255), `periodicity_time` datetime, `avg_time` int, `airline_id` int, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [1m[35m (120.3ms)[0m  [1m[35mCREATE TABLE `passengers` (`id` int AUTO_INCREMENT PRIMARY KEY, `full_name` varchar(255), `gov_id` varchar(255), `country` varchar(255), `birthdate` date, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [1m[35m (134.1ms)[0m  [1m[35mCREATE TABLE `planes` (`id` int AUTO_INCREMENT PRIMARY KEY, `code` varchar(255), `seats_a` int, `seats_b` int, `airline_id` int, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [1m[35m (175.8ms)[0m  [1m[35mCREATE TABLE `sale_orders` (`id` int AUTO_INCREMENT PRIMARY KEY, `buyer_id` int, `buy_date` datetime, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [1m[35m (124.7ms)[0m  [1m[35mCREATE TABLE `tickets` (`id` int AUTO_INCREMENT PRIMARY KEY, `itinerary_id` int, `sale_order_id` int, `passenger_id` int, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [1m[35m (130.2ms)[0m  [1m[35mCREATE TABLE `users` (`id` int AUTO_INCREMENT PRIMARY KEY, `email` varchar(255), `password_digest` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL, `encrypted_password` varchar(255) DEFAULT '' NOT NULL, `reset_password_token` varchar(255), `reset_password_sent_at` datetime, `remember_created_at` datetime, `sign_in_count` int DEFAULT 0 NOT NULL, `current_sign_in_at` datetime, `last_sign_in_at` datetime, `current_sign_in_ip` varchar(255), `last_sign_in_ip` varchar(255), UNIQUE INDEX `index_users_on_email` USING btree (`email`), UNIQUE INDEX `index_users_on_reset_password_token` USING btree (`reset_password_token`)) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [1m[35m (110.1ms)[0m  [1m[35mCREATE TABLE `schema_migrations` (`version` varchar(255) PRIMARY KEY) ENGINE=InnoDB[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT version FROM `schema_migrations`[0m
+  [1m[35m (0.4ms)[0m  [1m[32mINSERT INTO `schema_migrations` (version) VALUES ('20161118003521')[0m
+  [1m[35m (0.5ms)[0m  [1m[32mINSERT INTO schema_migrations (version) VALUES ('20161116000841'), ('20161116000912'), ('20161116001021'), ('20161116002255'), ('20161116002436'), ('20161116002902'), ('20161116003002'), ('20161116003120'), ('20161116003242'), ('20161116003314'), ('20161116003415');
+
+[0m
+  [1m[35m (120.2ms)[0m  [1m[35mCREATE TABLE `ar_internal_metadata` (`key` varchar(255) PRIMARY KEY, `value` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT  `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO `ar_internal_metadata` (`key`, `value`, `created_at`, `updated_at`) VALUES ('environment', 'development', '2016-11-23 01:31:09', '2016-11-23 01:31:09')[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT  `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Started GET "/" for ::1 at 2016-11-22 20:31:26 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Processing by StaticPagesController#welcome as HTML
+  Rendering static_pages/welcome.html.erb within layouts/application
+  Rendered static_pages/welcome.html.erb within layouts/application (1.6ms)
+Completed 200 OK in 4662ms (Views: 4644.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/airports" for ::1 at 2016-11-22 20:31:38 -0500
+Processing by AirportsController#index as HTML
+  Rendering airports/index.html.erb within layouts/application
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `airports`[0m
+  Rendered airports/index.html.erb within layouts/application (4.6ms)
+Completed 200 OK in 124ms (Views: 88.0ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/airports/new" for ::1 at 2016-11-22 20:31:40 -0500
+Processing by AirportsController#new as HTML
+  Rendering airports/new.html.erb within layouts/application
+  [1m[36mCity Load (0.5ms)[0m  [1m[34mSELECT `cities`.* FROM `cities`[0m
+  Rendered airports/_form.html.erb (321.5ms)
+  Rendered airports/new.html.erb within layouts/application (323.5ms)
+Completed 500 Internal Server Error in 339ms (ActiveRecord: 1.9ms)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `class_option' for #<#<Class:0x007f8d52be9948>:0x007f8d52dfae08>):
+    16:     <% end %>
+    17:   <div class="form-group">
+    18:     <%= f.label :name%>
+    19:     <%= f.text_field :name, class: "form-control #{class_option[:input]}" %>
+    20:   </div>
+    21:   <div class="form-group">
+    22:     <select name="airport[city_id]" >
+  
+app/views/airports/_form.html.erb:19:in `block in _app_views_airports__form_html_erb___4483925526593988935_70122478916100'
+app/views/airports/_form.html.erb:3:in `_app_views_airports__form_html_erb___4483925526593988935_70122478916100'
+app/views/airports/new.html.erb:2:in `_app_views_airports_new_html_erb__2414724835087510918_70122478755600'
+  Rendering /Users/cjc16/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout
+  Rendering /Users/cjc16/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /Users/cjc16/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (7.1ms)
+  Rendering /Users/cjc16/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /Users/cjc16/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.8ms)
+  Rendering /Users/cjc16/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /Users/cjc16/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.8ms)
+  Rendered /Users/cjc16/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (93.4ms)
+Started GET "/cities/new" for ::1 at 2016-11-22 20:31:46 -0500
+Processing by CitiesController#new as HTML
+  Rendering cities/new.html.erb within layouts/application
+  Rendered cities/new.html.erb within layouts/application (5.4ms)
+Completed 200 OK in 59ms (Views: 52.4ms | ActiveRecord: 0.7ms)
+
+
+Started POST "/cities" for ::1 at 2016-11-22 20:32:02 -0500
+Processing by CitiesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"qsaF4iFVbsBA0zeX8Fj4femlrC88QPJPjGMk+hMdSbEGfxo10noLIxK+e2aQ4PfuHxKt+f948ZbRC1zaFhGKqQ==", "city"=>{"name"=>"Bogota", "country_name"=>"Colombia", "time_zone"=>"UTC - 5"}, "commit"=>"Create City"}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO `cities` (`name`, `country_name`, `time_zone`, `created_at`, `updated_at`) VALUES ('Bogota', 'Colombia', 'UTC - 5', '2016-11-23 01:32:02', '2016-11-23 01:32:02')[0m
+  [1m[35m (16.3ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/cities
+Completed 302 Found in 21ms (ActiveRecord: 16.8ms)
+
+
+Started GET "/cities" for ::1 at 2016-11-22 20:32:02 -0500
+Processing by CitiesController#index as HTML
+  Rendering cities/index.html.erb within layouts/application
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `cities`[0m
+  [1m[36mCity Load (0.2ms)[0m  [1m[34mSELECT `cities`.* FROM `cities`[0m
+  Rendered cities/index.html.erb within layouts/application (2.3ms)
+Completed 200 OK in 46ms (Views: 43.9ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/airports" for ::1 at 2016-11-22 20:32:12 -0500
+Processing by AirportsController#index as HTML
+  Rendering airports/index.html.erb within layouts/application
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `airports`[0m
+  Rendered airports/index.html.erb within layouts/application (1.5ms)
+Completed 200 OK in 51ms (Views: 48.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/airports/new" for ::1 at 2016-11-22 20:32:14 -0500
+Processing by AirportsController#new as HTML
+  Rendering airports/new.html.erb within layouts/application
+  [1m[36mCity Load (0.3ms)[0m  [1m[34mSELECT `cities`.* FROM `cities`[0m
+  Rendered airports/_form.html.erb (184.6ms)
+  Rendered airports/new.html.erb within layouts/application (186.6ms)
+Completed 500 Internal Server Error in 196ms (ActiveRecord: 0.3ms)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `class_option' for #<#<Class:0x007f8d52be9948>:0x007f8d4add2730>):
+    16:     <% end %>
+    17:   <div class="form-group">
+    18:     <%= f.label :name%>
+    19:     <%= f.text_field :name, class: "form-control #{class_option[:input]}" %>
+    20:   </div>
+    21:   <div class="form-group">
+    22:     <select name="airport[city_id]" >
+  
+app/views/airports/_form.html.erb:19:in `block in _app_views_airports__form_html_erb___4483925526593988935_70122415280480'
+app/views/airports/_form.html.erb:3:in `_app_views_airports__form_html_erb___4483925526593988935_70122415280480'
+app/views/airports/new.html.erb:2:in `_app_views_airports_new_html_erb__2414724835087510918_70122411660540'
+  Rendering /Users/cjc16/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout
+  Rendering /Users/cjc16/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /Users/cjc16/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (4.9ms)
+  Rendering /Users/cjc16/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /Users/cjc16/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.9ms)
+  Rendering /Users/cjc16/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /Users/cjc16/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.7ms)
+  Rendered /Users/cjc16/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (78.6ms)
+Started PUT "/__web_console/repl_sessions/80cb1c4dba55c9a1d88568db19bd3543" for ::1 at 2016-11-22 20:32:47 -0500
+Started PUT "/__web_console/repl_sessions/80cb1c4dba55c9a1d88568db19bd3543" for ::1 at 2016-11-22 20:32:48 -0500
+Started PUT "/__web_console/repl_sessions/80cb1c4dba55c9a1d88568db19bd3543" for ::1 at 2016-11-22 20:32:49 -0500
+  [1m[36mCity Load (0.3ms)[0m  [1m[34mSELECT `cities`.* FROM `cities`[0m
+Started GET "/airports/new" for ::1 at 2016-11-22 20:36:30 -0500
+Processing by AirportsController#new as HTML
+  Rendering airports/new.html.erb within layouts/application
+  [1m[36mCity Load (0.3ms)[0m  [1m[34mSELECT `cities`.* FROM `cities`[0m
+  Rendered airports/_form.html.erb (2.2ms)
+  Rendered airports/new.html.erb within layouts/application (3.7ms)
+Completed 200 OK in 46ms (Views: 44.1ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/airports" for ::1 at 2016-11-22 20:36:40 -0500
+Processing by AirportsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"+Dr0wrE2hhHQIcc1pKwi/K+DTI9s7ZZ5WWNGBKfL1OpUg2sVQhnj8oJMi8TEFC1vWTRNWa/VlaAECz4koscX8g==", "airport"=>{"name"=>"El dorado", "city_id"=>"1"}, "commit"=>"New airport"}
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCity Load (0.4ms)[0m  [1m[34mSELECT  `cities`.* FROM `cities` WHERE `cities`.`id` = 1 LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO `airports` (`name`, `city_id`, `created_at`, `updated_at`) VALUES ('El dorado', 1, '2016-11-23 01:36:40', '2016-11-23 01:36:40')[0m
+  [1m[35m (1.9ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/airports
+Completed 302 Found in 98ms (ActiveRecord: 2.7ms)
+
+
+Started GET "/airports" for ::1 at 2016-11-22 20:36:40 -0500
+Processing by AirportsController#index as HTML
+  Rendering airports/index.html.erb within layouts/application
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `airports`[0m
+  [1m[36mAirport Load (0.2ms)[0m  [1m[34mSELECT `airports`.* FROM `airports`[0m
+  [1m[36mCity Load (0.2ms)[0m  [1m[34mSELECT  `cities`.* FROM `cities` WHERE `cities`.`id` = 1 LIMIT 1[0m
+  Rendered airports/index.html.erb within layouts/application (3.2ms)
+Completed 200 OK in 46ms (Views: 43.3ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/airports/1/edit" for ::1 at 2016-11-22 20:36:58 -0500
+Processing by AirportsController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mAirport Load (0.5ms)[0m  [1m[34mSELECT  `airports`.* FROM `airports` WHERE `airports`.`id` = 1 LIMIT 1[0m
+  Rendering airports/edit.html.erb within layouts/application
+  [1m[36mCity Load (0.3ms)[0m  [1m[34mSELECT `cities`.* FROM `cities`[0m
+  Rendered airports/_form.html.erb (2.8ms)
+  Rendered airports/edit.html.erb within layouts/application (4.5ms)
+Completed 200 OK in 51ms (Views: 46.7ms | ActiveRecord: 0.9ms)
+
+
+Started PUT "/airports/1" for ::1 at 2016-11-22 20:37:02 -0500
+Processing by AirportsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"NDzEJvJ8ayQE/TWH0FIwKASTgU/n6D81FhwQ/MnYqxQx2KAezAMvTAdlPYBuQiveprxKgksjhbV3nRG4O8G1UA==", "airport"=>{"name"=>"El doradito", "city_id"=>"1"}, "commit"=>"Edit airport", "id"=>"1"}
+  [1m[36mAirport Load (0.3ms)[0m  [1m[34mSELECT  `airports`.* FROM `airports` WHERE `airports`.`id` = 1 LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCity Load (0.2ms)[0m  [1m[34mSELECT  `cities`.* FROM `cities` WHERE `cities`.`id` = 1 LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[33mUPDATE `airports` SET `name` = 'El doradito', `updated_at` = '2016-11-23 01:37:02' WHERE `airports`.`id` = 1[0m
+  [1m[35m (16.5ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/airports
+Completed 302 Found in 23ms (ActiveRecord: 17.5ms)
+
+
+Started GET "/airports" for ::1 at 2016-11-22 20:37:02 -0500
+Processing by AirportsController#index as HTML
+  Rendering airports/index.html.erb within layouts/application
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `airports`[0m
+  [1m[36mAirport Load (0.2ms)[0m  [1m[34mSELECT `airports`.* FROM `airports`[0m
+  [1m[36mCity Load (0.2ms)[0m  [1m[34mSELECT  `cities`.* FROM `cities` WHERE `cities`.`id` = 1 LIMIT 1[0m
+  Rendered airports/index.html.erb within layouts/application (3.1ms)
+Completed 200 OK in 48ms (Views: 45.3ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/airports/1" for ::1 at 2016-11-22 20:37:05 -0500
+Processing by AirportsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mAirport Load (0.6ms)[0m  [1m[34mSELECT  `airports`.* FROM `airports` WHERE `airports`.`id` = 1 LIMIT 1[0m
+  Rendering airports/show.html.erb within layouts/application
+  [1m[36mCity Load (0.3ms)[0m  [1m[34mSELECT  `cities`.* FROM `cities` WHERE `cities`.`id` = 1 LIMIT 1[0m
+  Rendered airports/show.html.erb within layouts/application (2.3ms)
+Completed 200 OK in 49ms (Views: 45.4ms | ActiveRecord: 1.0ms)
+
+
+Started DELETE "/airports/1" for ::1 at 2016-11-22 20:37:07 -0500
+Processing by AirportsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"RwtsXAl+GHTq+hfqpDqZWByYVBmllr0IbIfXQmEyjnvrsvOL+lF9l7iXWxvEgpbL6i9Vz2auvtEx769iZD5NYw==", "id"=>"1"}
+  [1m[36mAirport Load (0.3ms)[0m  [1m[34mSELECT  `airports`.* FROM `airports` WHERE `airports`.`id` = 1 LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[31mDELETE FROM `airports` WHERE `airports`.`id` = 1[0m
+  [1m[35m (1.3ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/airports
+Completed 302 Found in 4ms (ActiveRecord: 2.0ms)
+
+
+Started GET "/airports" for ::1 at 2016-11-22 20:37:07 -0500
+Processing by AirportsController#index as HTML
+  Rendering airports/index.html.erb within layouts/application
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `airports`[0m
+  Rendered airports/index.html.erb within layouts/application (1.3ms)
+Completed 200 OK in 44ms (Views: 42.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/airports/new" for ::1 at 2016-11-22 20:37:08 -0500
+Processing by AirportsController#new as HTML
+  Rendering airports/new.html.erb within layouts/application
+  [1m[36mCity Load (0.4ms)[0m  [1m[34mSELECT `cities`.* FROM `cities`[0m
+  Rendered airports/_form.html.erb (3.1ms)
+  Rendered airports/new.html.erb within layouts/application (5.0ms)
+Completed 200 OK in 52ms (Views: 49.5ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/airports" for ::1 at 2016-11-22 20:37:19 -0500
+Processing by AirportsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"TDGfl6wGxXDCKEHmjm4j6UkuYma25ZSI8mfhNV5LRyMDrrEWaAmMO0N9lLxyDcHglgq4jqKxhCCfylKlwFCJLQ==", "airport"=>{"name"=>"El dorado", "city_id"=>"1"}, "commit"=>"New airport"}
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCity Load (0.3ms)[0m  [1m[34mSELECT  `cities`.* FROM `cities` WHERE `cities`.`id` = 1 LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO `airports` (`name`, `city_id`, `created_at`, `updated_at`) VALUES ('El dorado', 1, '2016-11-23 01:37:19', '2016-11-23 01:37:19')[0m
+  [1m[35m (14.5ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/airports
+Completed 302 Found in 19ms (ActiveRecord: 15.1ms)
+
+
+Started GET "/airports" for ::1 at 2016-11-22 20:37:19 -0500
+Processing by AirportsController#index as HTML
+  Rendering airports/index.html.erb within layouts/application
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `airports`[0m
+  [1m[36mAirport Load (0.2ms)[0m  [1m[34mSELECT `airports`.* FROM `airports`[0m
+  [1m[36mCity Load (0.2ms)[0m  [1m[34mSELECT  `cities`.* FROM `cities` WHERE `cities`.`id` = 1 LIMIT 1[0m
+  Rendered airports/index.html.erb within layouts/application (3.1ms)
+Completed 200 OK in 46ms (Views: 43.6ms | ActiveRecord: 0.7ms)
+
+
